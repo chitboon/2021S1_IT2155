@@ -1,0 +1,140 @@
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+	<div class="card card-body mx-auto">
+		<h3>Add Video Jot</h3>
+		<form action="/video/addVideo" method="post" id="addVideo">
+			<div class="row mb-2">
+				<div class="col-lg-9">
+					<div class="form-group">
+						<label class="font-italic" for="title">Title</label>
+						<input id="title" type="text" class="form-control" onblur="initialiseTitle()" name="title" required>
+
+						<a href="#" onclick="getOMdbMovie()" tabindex="-1" class="card-link">
+							<i class="fas fa-film"></i>
+							Get Open Movie DB Data
+						</a>
+						<span class="font-weight-bold text-info" id="OMdbErr" style="display:none">Unavailable</span>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="story">Story</label>
+						<textarea class="form-control" id="story" name="story" rows="6"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="font-italic" for="starring">Starring</label>
+						<input id="starring" type="text" class="form-control" name="starring">
+					</div>
+				</div>
+				<div class="col-lg-3 mb-4">
+					<input type="file" id="posterUpload" name="posterUpload" accept="image/png,
+															image/jpeg,image/jpg,image/gif">
+					<img id="poster" src="/img/no-image.jpg" alt="" class="border img-thumbnail img-fluid"
+						 style="height:95%;width:100%">
+					<input id="posterURL" type="hidden" name="posterURL">
+					<div class="font-weight-bold text-danger small" id="posterErr" style="display:none"></div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row mb-2 mt-4">
+					<div class="col-12 col-sm-5 col-md-5 col-lg-6 mb-4">
+						<label class="font-italic">Date release</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly />
+					</div>
+					<div class="col-12 col-sm-7 col-md-7 col-lg-6">
+						<label class="font-italic">Language</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="chineseLang"
+								value="Chinese" onclick="ensureOneCheck('language', 'languageErr', 'butAddVideo')">
+							<label class="form-check-label" for="chinese">Chinese</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="englishLang"
+								value="English" checked
+								onclick="ensureOneCheck('language', 'languageErr', 'butAddVideo')">
+							<label class="form-check-label" for="englishLang">English</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="malayLang" value="Malay"
+								onclick="ensureOneCheck('language', 'languageErr', 'butAddVideo')">
+							<label class="form-check-label" for="malaylang">Malay</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="tamilLang" value="Tamil"
+								onclick="ensureOneCheck('language', 'languageErr', 'butAddVideo')">
+							<label class="form-check-label" for="tamilLang">Tamil</label>
+						</div>
+						<p class="font-weight-bold text-info" id="languageErr" style="display:none">Please select one
+							language</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Subtitles</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="chinese"
+								value="Chinese">
+							<label class="form-check-label" for="chinese">Chinese</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="english"
+								value="English">
+							<label class="form-check-label" for="englishLang">English</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="malay" value="Malay">
+							<label class="form-check-label" for="malay">Malay</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="tamil" value="Tamil">
+							<label class="form-check-label" for="tamil">Tamil</label>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Classification</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="G" value="G" name="classification" checked>
+							<label class="form-check-label" for="G">G</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="PG" value="PG" name="classification">
+							<label class="form-check-label" for="PG">PG</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="PG13" value="PG13" name="classification">
+							<label class="form-check-label" for="PG13">PG13</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="NC13" value="NC13" name="classification">
+							<label class="form-check-label" for="NC13">NC13</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="M18" value="M18" name="classification">
+							<label class="form-check-label" for="M18">M18</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="R21" value="R21" name="classification">
+							<label class="form-check-label" for="R21">R21</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<button type="submit" disabled style="display: none" aria-hidden="true"></button>
+			<input class="btn btn-outline-primary" type="submit" value="Save">
+		</form>
+	</div>
+</div>
+<script>
+	$('#datepicker').datepicker({
+		value: new Date().toLocaleDateString(),
+		format: 'dd/mm/yyyy',
+		uiLibrary: 'bootstrap4',
+	});
+</script>

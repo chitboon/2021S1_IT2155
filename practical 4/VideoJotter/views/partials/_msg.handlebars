@@ -1,0 +1,14 @@
+
+{{!-- 
+  Displays dive with {{success_msg}} if success_msg is valid 
+--}}
+{{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+
+{{!-- 
+  Displays dive with {{error_msg}} if error_msg is valid 
+--}}
+{{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}

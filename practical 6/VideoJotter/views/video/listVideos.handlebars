@@ -1,0 +1,79 @@
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+
+
+<div class="container">
+{{#if videos}}
+	<div class="card card-body">
+		<h3 class="text-primary">Video Jots</h3>
+		{{#each videos}}
+			<div class="card border-primary mb-2 w-100 mx-auto">
+				<div class="card-header">
+					<h5 class="card-title">{{title}}</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-3">
+							<p class="font-italic">Subtitles</p>
+							<p class="text-info">
+								{{subtitles}}
+							</p>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-3">
+							<p class="font-italic">Language</p>
+							<p class="text-info">
+								{{language}}
+							</p>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-2">
+							<p class="font-italic">Classification</p>
+							<p class="text-info">{{classification}}</p>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-2">
+							<p class="font-italic">Date Release</p>
+							<p class="text-info">{{formatDate dateRelease 'DD MMM YYYY'}}</p>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-2">
+							<p class="font-italic"></p>
+							<a href="/video/edit/{{id}}" class="card-link">
+								<i class="fas fa-pencil-alt"></i>
+								Edit
+							</a>
+							<a href="/video/delete/{{id}}" class="card-link" data-toggle="confirmation"
+							   data-title="Confirm delete?">
+								<i class="far fa-trash-alt"></i>
+								Delete
+							</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="accordion" id="storyAccordion{{id}}">
+					<div class="card-header" id="headingOne{{id}}">
+						<button class="btn btn-link" type="button" data-toggle="collapse"
+								data-target="#collapseOne{{id}}"
+								aria-expanded="false" aria-controls="collapseOne{{id}}"
+						>
+							Story<i class="fas fa-chevron-down"></i>
+						</button>
+
+					</div>
+
+					<div id="collapseOne{{id}}" class="collapse" aria-labelledby="headingOne{{id}}"
+						 data-parent="#storyAccordion{{id}}"
+					>
+						<div class="card-body">
+							{{story}}
+						</div>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+
+</div>
+{{else}}
+	<h3>No videos jotted</h3>
+{{/if}}
+
+

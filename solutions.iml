@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/bcryptjs" level="application" />
+    <orderEntry type="library" name="@types/body-parser" level="application" />
+    <orderEntry type="library" name="@types/config" level="application" />
+    <orderEntry type="library" name="@types/cookie-parser" level="application" />
+    <orderEntry type="library" name="@types/express" level="application" />
+    <orderEntry type="library" name="@types/express-handlebars" level="application" />
+    <orderEntry type="library" name="@types/express-session" level="application" />
+    <orderEntry type="library" name="@types/jquery" level="application" />
+    <orderEntry type="library" name="@types/method-override" level="application" />
+    <orderEntry type="library" name="@types/sequelize" level="application" />
+    <orderEntry type="library" name="R User Library" level="project" />
+    <orderEntry type="library" name="R Skeletons" level="application" />
+  </component>
+</module>

@@ -1,0 +1,136 @@
+<!--.col-	.col-sm-	.col-md-	.col-lg-	.col-xl- -->
+<div class="container">
+	<div class="card card-body">
+		<h3>Edit Video Jot</h3>
+		<form action="/video/saveEditedVideo/{{video.id}}?_method=PUT" method="post">
+			<input type="hidden" name="_method" value="PUT">
+			<div class="form-group">
+				<label class="font-italic" for="title">Title</label>
+				<input type="text" class="form-control" name="title" value="{{video.title}}" required>
+			</div>
+			<div class="form-group mb-4">
+				<label class="font-italic" for="story">Story</label>
+				<textarea class="form-control" id="story" name="story" rows="7" >{{video.story}}</textarea>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6 mb-4">
+						<label class="font-italic">Date of release</label>
+						<input id="datepicker" width="200" name="dateRelease" readonly 
+								value="{{formatDate video.dateRelease 'DD/MM/YYYY'}}"
+						/>
+					</div>
+					<div class="col-12 col-sm-12 col-md-12 col-lg-6">
+						<label class="font-italic">Language</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="chineseLang" value="Chinese"
+								{{video.chineseLang}} onclick="ensureOneCheck('language', 'languageErr',
+								'butEditVideo')">
+							<label class="form-check-label" for="chinese">Chinese</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="englishLang" value="English"
+								   {{video.englishLang}} onclick="ensureOneCheck('language', 'languageErr',
+								   'butEditVideo')" >
+							<label class="form-check-label" for="englishLang">English</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="malayLang" value="Malay"
+								   {{video.malayLang}} onclick="ensureOneCheck('language', 'languageErr', 'butEditVideo')">
+							<label class="form-check-label" for="malaylang">Malay</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="language" id="tamilLang" value="Tamil"
+								{{video.tamilLang}} onclick="ensureOneCheck('language', 'languageErr', 'butEditVideo')">
+							<label class="form-check-label" for="tamilLang">Tamil</label>
+						</div>
+						<p class="font-weight-bold text-info" id="languageErr" style="display:none">Please select one
+							language</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group ">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Subtitles</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="chinese" value="Chinese"
+								{{video.chineseSub}}>
+							<label class="form-check-label" for="chinese">Chinese</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="english" value="English"
+								{{video.englishSub}}>
+							<label class="form-check-label" for="englishLang">English</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="malay" value="Malay"
+								{{video.malaySub}}>
+							<label class="form-check-label" for="malay">Malay</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="subtitles" id="tamil" value="Tamil"
+								{{video.tamilSub}}>
+							<label class="form-check-label" for="tamil">Tamil</label>
+						</div>
+						{{!--<div class="form-check form-check-inline">
+							<div class="form-group">
+								<input type="text" class="form-control form-control-sm" name="otherSub" id="otherSub" placeholder="Other">
+							</div>
+						</div>--}}
+					</div>
+
+					<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+						<label class="font-italic">Classification</label>
+						<br>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="G" value="G" name="classification"
+								{{radioCheck video.classification 'G'}}>
+							<label class="form-check-label" for="G">G</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="PG" value="PG" name="classification"
+								{{radioCheck video.classification 'PG'}}>
+							<label class="form-check-label" for="PG">PG</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="PG13" value="PG13" name="classification"
+								{{radioCheck video.classification 'PG13'}}>
+							<label class="form-check-label" for="PG13">PG13</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="NC13" value="NC13" name="classification"
+								{{radioCheck video.classification 'NC13'}}>
+							<label class="form-check-label" for="NC13">NC13</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="M18" value="M18" name="classification"
+								{{radioCheck video.classification 'M18'}}>
+							<label class="form-check-label" for="M18">M18</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="R21" value="R21" name="classification"
+								{{radioCheck video.classification 'R21'}}>
+							<label class="form-check-label" for="R21">R21</label>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<br>
+			<button id="butEditVideo" type="submit" class="btn btn-primary">Save</button>
+		</form>
+	</div>
+</div>
+
+<script>
+		$('#datepicker').datepicker({
+			format: 'dd/mm/yyyy',
+			uiLibrary: 'bootstrap4',
+		});
+</script>
+
